@@ -1,14 +1,23 @@
 import { View, Text, StyleSheet } from "react-native";
 
-export default function HomeScreen() {
+export default function HomeScreen({ route }) {
+  const { username } = route.params;
+
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Ana Sayfa</Text>
+      <Text style={styles.text}>Hoş geldin, {username}</Text>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: "center", alignItems: "center" },
-  text: { fontSize: 24, fontWeight: "700" },
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  text: {
+    fontSize: 22,
+    fontWeight: "600",
+  },
 });
