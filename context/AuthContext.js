@@ -1,4 +1,5 @@
-import { createContext, useContext, useMemo, useState } from "react";
+import { createContext, useContext, useEffect, useMemo, useState } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const AuthContext = createContext(undefined);
 
@@ -12,6 +13,14 @@ export function AuthProvider({ children }) {
   const logout = () => {
     setUser(null);
   };
+
+  useEffect(() => {
+    if (user) {
+      AsyncStorage.setItem("user", JSON.stringify(user));
+    } else {
+      AsyncStorage.removeItem("user");
+    }
+  }, [user]);
 
   const value = useMemo(() => ({ user, login, logout }), [user]);
 
