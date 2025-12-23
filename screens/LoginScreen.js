@@ -2,14 +2,14 @@ import { useState } from "react";
 import { View, Text, TextInput, Pressable, StyleSheet } from "react-native";
 import { useAuth } from "../context/AuthContext";
 
-export default function LoginScreen({ navigation }) {
+export default function LoginScreen() {
   const [username, setUsername] = useState("");
   const { login } = useAuth();
 
   const handleLogin = () => {
-    if (!username.trim()) return;
-    login(username);
-    navigation.navigate("Home");
+    const cleaned = username.trim();
+    if (!cleaned) return;
+    login(cleaned);
   };
 
   return (

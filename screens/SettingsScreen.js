@@ -17,30 +17,9 @@ export default function SettingsScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    padding: 24,
-    gap: 12,
-  },
-  title: {
-    fontSize: 26,
-    fontWeight: "700",
-  },
-  subtitle: {
-    fontSize: 16,
-    textAlign: "center",
-  },
-  logoutButton: {
-    borderWidth: 1,
-    borderRadius: 10,
-    paddingVertical: 12,
-    paddingHorizontal: 18,
-    marginTop: 10,
-  },
-  logoutText: {
-    fontSize: 16,
-    fontWeight: "700",
-  },
+  container: { flex: 1, justifyContent: "center", alignItems: "center", padding: 24, gap: 12 },
+  title: { fontSize: 26, fontWeight: "700" },
+  subtitle: { fontSize: 16, textAlign: "center" },
+  logoutButton: { borderWidth: 1, borderRadius: 10, paddingVertical: 12, paddingHorizontal: 18, marginTop: 10 },
+  logoutText: { fontSize: 16, fontWeight: "700" },
 });

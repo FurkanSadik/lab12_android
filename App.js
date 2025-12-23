@@ -30,7 +30,15 @@ function Root() {
             options={({ navigation }) => ({
               title: "Ana Sayfa",
               headerRight: () => (
-                <Pressable onPress={() => navigation.navigate("Settings")}>
+                <Pressable
+                  onPress={() => {
+                    const routeNames = navigation.getState()?.routeNames || [];
+                    if (routeNames.includes("Settings")) {
+                      navigation.navigate("Settings");
+                    }
+                  }}
+                  hitSlop={10}
+                >
                   <Text style={{ fontSize: 18, fontWeight: "700" }}>⚙️</Text>
                 </Pressable>
               ),
