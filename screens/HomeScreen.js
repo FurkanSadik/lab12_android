@@ -1,12 +1,17 @@
 import { View, Text, StyleSheet } from "react-native";
+import { useAuth } from "../context/AuthContext";
 
-export default function HomeScreen({ route }) {
-  const { username } = route.params;
+export default function HomeScreen() {
+  const { user } = useAuth();
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Hoş geldin, {username}</Text>
-      <Text style={styles.hint}>Ayarlar için sağ üstteki ⚙️ simgesini kullan.</Text>
+      <Text style={styles.text}>
+        Hoş geldin, {user ? user.username : ""}
+      </Text>
+      <Text style={styles.hint}>
+        Ayarlar için sağ üstteki ⚙️ simgesini kullan.
+      </Text>
     </View>
   );
 }
@@ -19,12 +24,6 @@ const styles = StyleSheet.create({
     gap: 10,
     padding: 24,
   },
-  text: {
-    fontSize: 22,
-    fontWeight: "600",
-  },
-  hint: {
-    fontSize: 14,
-    textAlign: "center",
-  },
+  text: { fontSize: 22, fontWeight: "600" },
+  hint: { fontSize: 14, textAlign: "center" },
 });
