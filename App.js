@@ -10,7 +10,7 @@ import { AuthProvider, useAuth } from "./context/AuthContext";
 const Stack = createNativeStackNavigator();
 
 function Root() {
-  const { isReady } = useAuth();
+  const { user, isReady } = useAuth();
 
   if (!isReady) {
     return (
@@ -21,31 +21,34 @@ function Root() {
   }
 
   return (
-    <Stack.Navigator initialRouteName="Login">
-      <Stack.Screen
-        name="Login"
-        component={LoginScreen}
-        options={{ title: "Giriş" }}
-      />
-
-      <Stack.Screen
-        name="Home"
-        component={HomeScreen}
-        options={({ navigation }) => ({
-          title: "Ana Sayfa",
-          headerRight: () => (
-            <Pressable onPress={() => navigation.navigate("Settings")}>
-              <Text style={{ fontSize: 18, fontWeight: "700" }}>⚙️</Text>
-            </Pressable>
-          ),
-        })}
-      />
-
-      <Stack.Screen
-        name="Settings"
-        component={SettingsScreen}
-        options={{ title: "Ayarlar" }}
-      />
+    <Stack.Navigator>
+      {user ? (
+        <>
+          <Stack.Screen
+            name="Home"
+            component={HomeScreen}
+            options={({ navigation }) => ({
+              title: "Ana Sayfa",
+              headerRight: () => (
+                <Pressable onPress={() => navigation.navigate("Settings")}>
+                  <Text style={{ fontSize: 18, fontWeight: "700" }}>⚙️</Text>
+                </Pressable>
+              ),
+            })}
+          />
+          <Stack.Screen
+            name="Settings"
+            component={SettingsScreen}
+            options={{ title: "Ayarlar" }}
+          />
+        </>
+      ) : (
+        <Stack.Screen
+          name="Login"
+          component={LoginScreen}
+          options={{ title: "Giriş" }}
+        />
+      )}
     </Stack.Navigator>
   );
 }
