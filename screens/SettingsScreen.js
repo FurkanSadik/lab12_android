@@ -1,29 +1,29 @@
 import { View, Text, Pressable, StyleSheet } from "react-native";
 import { useAuth } from "../context/AuthContext";
-import useTheme from "../hooks/useTheme";
+import { useTheme } from "../context/ThemeContext";
 
 export default function SettingsScreen() {
   const { logout } = useAuth();
-  const { theme, toggleTheme, isThemeReady } = useTheme();
+  const { theme, toggleTheme, isThemeReady, palette } = useTheme();
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Ayarlar</Text>
+    <View style={[styles.container, { backgroundColor: palette.bg }]}>
+      <Text style={[styles.title, { color: palette.text }]}>Ayarlar</Text>
 
-      <Text style={styles.subtitle}>
+      <Text style={[styles.subtitle, { color: palette.text }]}>
         Tema: {theme === "dark" ? "Koyu" : "Açık"}
       </Text>
 
       <Pressable
-        style={styles.button}
+        style={[styles.button, { borderColor: palette.border }]}
         onPress={toggleTheme}
         disabled={!isThemeReady}
       >
-        <Text style={styles.buttonText}>Temayı Değiştir</Text>
+        <Text style={[styles.buttonText, { color: palette.text }]}>Temayı Değiştir</Text>
       </Pressable>
 
-      <Pressable style={styles.logoutButton} onPress={logout}>
-        <Text style={styles.logoutText}>Çıkış Yap</Text>
+      <Pressable style={[styles.logoutButton, { borderColor: palette.border }]} onPress={logout}>
+        <Text style={[styles.logoutText, { color: palette.text }]}>Çıkış Yap</Text>
       </Pressable>
     </View>
   );
