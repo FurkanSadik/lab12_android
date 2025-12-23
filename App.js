@@ -1,5 +1,6 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { Pressable, Text } from "react-native";
 
 import LoginScreen from "./screens/LoginScreen";
 import HomeScreen from "./screens/HomeScreen";
@@ -16,11 +17,23 @@ export default function App() {
           component={LoginScreen}
           options={{ title: "Giriş" }}
         />
+
         <Stack.Screen
           name="Home"
           component={HomeScreen}
-          options={{ title: "Ana Sayfa" }}
+          options={({ navigation }) => ({
+            title: "Ana Sayfa",
+            headerRight: () => (
+              <Pressable
+                onPress={() => navigation.navigate("Settings")}
+                hitSlop={10}
+              >
+                <Text style={{ fontSize: 18, fontWeight: "700" }}>⚙️</Text>
+              </Pressable>
+            ),
+          })}
         />
+
         <Stack.Screen
           name="Settings"
           component={SettingsScreen}
